@@ -15,12 +15,17 @@ function App() {
       <main id="main-content">
         <Routes>
           <Route path="/" element={<WelcomeWorld />}></Route>
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/register" element={<Register />}></Route>
-          <Route path="/catalog" element={<Catalog />}></Route>
-          <Route path="/create" element={<Create />}></Route>
-          <Route path="/edit" element={<Edit />}></Route>
-          <Route path="/details" element={<Details />}></Route>
+
+          <Route path="/users/">
+            <Route path="login" element={<Login />} />
+            <Route path="register" element={<Register />} />
+          </Route>
+          <Route path="/games/">
+            <Route path="catalog" element={<Catalog />} />
+            <Route path="create" element={<Create />} />
+            <Route path="edit" element={<Edit />} />
+            <Route path="details" element={<Details />} />
+          </Route>
         </Routes>
       </main>
     </div>
