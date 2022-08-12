@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import Header from "./components/Header";
-import WelcomeWorld from "./components/WelcomeWorld";
+import WelcomeWorld from "./components/WelcomeWorld/WelcomeWorld";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Catalog from "./components/GameCompontens/GameCatalog/Catalog";
