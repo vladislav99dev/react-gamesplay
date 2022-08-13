@@ -1,5 +1,4 @@
 import { Routes, Route } from "react-router-dom";
-import { useState, useEffect } from "react";
 
 import Header from "./components/Header";
 import WelcomeWorld from "./components/WelcomeWorld/WelcomeWorld";
