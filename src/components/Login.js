@@ -1,29 +1,25 @@
 import {  useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import * as userServices from "../services/userServices";
-// import * as userAuth from "../services/userAuth";
+import * as userRequester from "../services/userServices";
 import { useAuthContext } from "../context/AuthContext";
 
 const Login = () => {
-  // const user = useContext(AuthContext);
-  // console.log(user);
-  const {login} = useAuthContext()
+  const {login, user} = useAuthContext()
   const [error, setError] = useState({});
   const navigate = useNavigate();
-
+  
   const loginHandler = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
 
-    userServices
+    userRequester
       .login(data)
       .then((result) => {
         if (result.message) {
           throw new Error(result.message);
         } else {
           login(result)
-          // userAuth.setUserInfo(result);
           navigate("/", { replace: true });
         }
       })
