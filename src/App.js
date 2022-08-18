@@ -9,6 +9,7 @@ import Catalog from "./components/GameCompontens/GameCatalog/Catalog";
 import Create from "./components/GameCompontens/Create";
 import Edit from "./components/GameCompontens/Edit";
 import Details from "./components/GameCompontens/Details";
+import Logout from "./components/Logout"
 
 function App() {
   return (
@@ -22,6 +23,8 @@ function App() {
             <Route path="/users/">
               <Route path="login" element={<Login />} />
               <Route path="register" element={<Register />} />
+              <Route path="logout" element={<Logout />} />
+
             </Route>
             <Route path="/games/">
               <Route path="catalog" element={<Catalog />} />
