@@ -5,9 +5,9 @@ import useLocalStorage from "../hooks/useLocalStorage";
 const AuthContext = createContext();
 
 const initialValue = {
-  _id: "",
-  email: "",
-  accessToken: "",
+    _id: "",
+    email: "",
+    accessToken: "",
 };
 
 export const AuthProvider = ({ children }) => {
@@ -33,3 +33,4 @@ export const useAuthContext = () => {
 
   return authState;
 };
+
