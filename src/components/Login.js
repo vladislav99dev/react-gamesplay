@@ -1,9 +1,13 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import {  useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import * as userServices from "../services/userServices";
-import * as userAuth from "../services/userAuth";
+// import * as userAuth from "../services/userAuth";
+import { useAuthContext } from "../context/AuthContext";
 
 const Login = () => {
+  // const user = useContext(AuthContext);
+  // console.log(user);
+  const {login} = useAuthContext()
   const [error, setError] = useState({});
   const navigate = useNavigate();
 
@@ -18,7 +22,8 @@ const Login = () => {
         if (result.message) {
           throw new Error(result.message);
         } else {
-          userAuth.setUserInfo(result);
+          login(result)
+          // userAuth.setUserInfo(result);
           navigate("/", { replace: true });
         }
       })
@@ -59,7 +64,7 @@ const Login = () => {
           <input type="submit" className="btn submit" />
           <p className="field">
             <span>
-              If you don't have profile click <a href="#">here</a>
+              If you don't have profile click <Link to="/register">here</Link>
             </span>
           </p>
         </div>
