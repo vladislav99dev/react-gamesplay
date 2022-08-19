@@ -10,8 +10,7 @@ const Logout = () => {
   useEffect(()=> {
     userServices.logout(null,user.accessToken)
     .then((res)=> {
-      console.log(res);
-      // logout();
+      logout();
       navigate("/");
     })
   },[])

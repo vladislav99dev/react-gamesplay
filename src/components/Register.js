@@ -1,5 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
+import { IsLoggedIn } from "../hoc/IsLoggedIn";
 import * as userServices from "../services/userServices";
 import { validateRegister } from "../services/formValidationServices";
 import { useValidationsContext } from "../context/ValidationsContext";
@@ -8,6 +10,12 @@ import ErrorMessage from "../partials/ErrorMessage";
 const Register = () => {
   const { errors, clearErrors, setErrorsArr } = useValidationsContext();
   const navigate = useNavigate();
+
+  useEffect(()=> {
+    return ()=> {
+      clearErrors();
+    }
+  },[])
 
   const registerHandler = (event) => {
     event.preventDefault();
@@ -72,4 +80,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default IsLoggedIn(Register);
