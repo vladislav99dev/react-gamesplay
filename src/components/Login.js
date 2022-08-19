@@ -1,30 +1,33 @@
-import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import * as userRequester from "../services/userServices";
+
+import * as userServices from "../services/userServices";
+import ErrorMessage from "../partials/ErrorMessage";
 import { useAuthContext } from "../context/AuthContext";
+import { useValidationsContext } from "../context/ValidationsContext";
 
 const Login = () => {
-  const { login, user } = useAuthContext();
-  const [error, setError] = useState({});
+  const { login } = useAuthContext();
   const navigate = useNavigate();
+  const { errors, clearErrors, setErrorsArr } = useValidationsContext();
 
   const loginHandler = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
 
-    userRequester
+    userServices
       .login(data)
       .then((result) => {
         if (result.message) {
-          throw new Error(result.message);
+          setErrorsArr([result.message]);
         } else {
           login(result);
+          clearErrors();
           navigate("/", { replace: true });
         }
       })
       .catch((err) => {
-        setError(err);
+        console.log(err);
       });
   };
 
@@ -34,13 +37,9 @@ const Login = () => {
         <div className="container">
           <div className="brand-logo"></div>
           <h1>Login</h1>
-          {error.hasOwnProperty("message") ? (
-            <p style={{ color: "rgb(235, 157, 142)", fontSize: "25px" }}>
-              {error.message}
-            </p>
-          ) : (
-            ""
-          )}
+          {errors.length > 0
+            ? errors.map((err) => <ErrorMessage key={err} message={err} />)
+            : null}
           <label htmlFor="email">Email:</label>
           <input
             type="email"
