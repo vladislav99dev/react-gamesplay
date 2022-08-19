@@ -1,5 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
+import { IsLoggedIn } from "../hoc/IsLoggedIn";
 import * as userServices from "../services/userServices";
 import ErrorMessage from "../partials/ErrorMessage";
 import { useAuthContext } from "../context/AuthContext";
@@ -9,6 +11,12 @@ const Login = () => {
   const { login } = useAuthContext();
   const navigate = useNavigate();
   const { errors, clearErrors, setErrorsArr } = useValidationsContext();
+
+  useEffect(()=> {
+    return ()=> {
+      clearErrors();
+    }
+  },[])
 
   const loginHandler = async (event) => {
     event.preventDefault();
@@ -30,6 +38,8 @@ const Login = () => {
         console.log(err);
       });
   };
+
+
 
   return (
     <section id="login-page" className="auth">
@@ -68,4 +78,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default IsLoggedIn(Login);
