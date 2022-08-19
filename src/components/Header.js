@@ -27,6 +27,7 @@ const Header = () => {
       </h1>
       <nav>
         <Link to={"/games/catalog"}>All Games</Link>
+        {user.email ? <Link to={'#'}>Welcome,{user.email}</Link> : null}
         {user.email ? userNavigation : guestNavigation}
       </nav>
       <Outlet />

@@ -1,13 +1,13 @@
-import {  useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as userRequester from "../services/userServices";
 import { useAuthContext } from "../context/AuthContext";
 
 const Login = () => {
-  const {login, user} = useAuthContext()
+  const { login, user } = useAuthContext();
   const [error, setError] = useState({});
   const navigate = useNavigate();
-  
+
   const loginHandler = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -19,7 +19,7 @@ const Login = () => {
         if (result.message) {
           throw new Error(result.message);
         } else {
-          login(result)
+          login(result);
           navigate("/", { replace: true });
         }
       })
