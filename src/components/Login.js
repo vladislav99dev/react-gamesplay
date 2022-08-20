@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
-import { IsLoggedIn } from "../hoc/IsLoggedIn";
+import { IsLoggedIn } from "../hoc/userRoutesGuard";
 
 import * as userServices from "../services/userServices";
 

@@ -9,7 +9,7 @@ import * as gameService from "../../services/gameServices";
 
 import ErrorMessage from "../../partials/ErrorMessage";
 
-import { IsNotLoggedIn } from "../../hoc/IsNotLoggedIn";
+import { IsNotLoggedIn } from "../../hoc/userRoutesGuard";
 
 const Create = () => {
 

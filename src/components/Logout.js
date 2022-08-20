@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 
 import { useAuthContext } from "../context/AuthContext";
 
+import { IsNotLoggedIn } from "../hoc/userRoutesGuard";
+
 import * as userServices from "../services/userServices";
 
 const Logout = () => {
@@ -20,39 +22,5 @@ const Logout = () => {
   return null;
 };
 
-export default Logout;
+export default IsNotLoggedIn(Logout);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // useEffect(() => {
-  //   userServices
-  //     .logout(null, user.accessToken)
-  //     .then((res) => {
-  //       logout();
-  //       navigate("/");
-  //     })
-  //     .catch((err) => {
-  //       // should render components with error message
-  //       console.log(err);
-  //       alert(err.statusText);
-  //     });
-  // }, []);
