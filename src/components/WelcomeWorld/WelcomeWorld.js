@@ -7,7 +7,11 @@ const WelcomeWorld = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      gameService.getAll().then((result) => setGames(result));
+      gameService.getAll()
+      .then((result) => setGames(result))
+      .catch((err) => {
+        console.error(err);
+      })
     }, 1000);
   }, []);
 

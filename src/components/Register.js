@@ -37,7 +37,9 @@ const Register = () => {
           clearErrors();
           navigate("/users/login", { replace: true });
         }
-      });
+      }).catch((err)=> {
+        console.error(err);
+      })
       clearErrors();
     }
   };

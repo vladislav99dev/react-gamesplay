@@ -9,7 +9,11 @@ const Catalog = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      gameServices.getAll().then((result) => setGames(Object.values(result)));
+      gameServices.getAll()
+      .then((result) => setGames(Object.values(result)))
+      .catch((err) => {
+        console.error(err);
+      })
     }, 1000);
   }, []);
 

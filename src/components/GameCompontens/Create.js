@@ -9,6 +9,8 @@ import * as gameService from "../../services/gameServices";
 
 import ErrorMessage from "../../partials/ErrorMessage";
 
+import { IsNotLoggedIn } from "../../hoc/IsNotLoggedIn";
+
 const Create = () => {
 
   const { errors, clearErrors, setErrorsArr } = useValidationsContext();
@@ -93,4 +95,4 @@ const Create = () => {
   );
 };
 
-export default Create;
+export default IsNotLoggedIn(Create)
