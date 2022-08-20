@@ -11,8 +11,9 @@ export const getOne = (gameId) => {
   );
 };
 
-export const gameRequester = (service, gameId, accessToken,data) => {
+export const gameRequester = (service, gameId, accessToken, data) => {
   let options = {};
+  let fetchUrl = `${url}/data/games/${gameId}`;
   if (service === "DELETE") {
     Object.assign(options, {
       method: service,
@@ -21,7 +22,7 @@ export const gameRequester = (service, gameId, accessToken,data) => {
         "X-Authorization": accessToken,
       },
     });
-  } else if (service === "PUT") {
+  } else if (service === "PUT" || service === "POST") {
     Object.assign(options, {
       method: service,
       headers: {
@@ -38,8 +39,14 @@ export const gameRequester = (service, gameId, accessToken,data) => {
     });
   }
 
-  return fetch(`${url}/data/games/${gameId}`, options);
+  if (service === "POST") {
+    fetchUrl = `${url}/data/games`;
+  }
+
+  return fetch(fetchUrl, options);
 };
 
 export const deleteOne = gameRequester.bind(null, "DELETE");
 export const editOne = gameRequester.bind(null, "PUT");
+export const createOne = gameRequester.bind(null, "POST");
+
