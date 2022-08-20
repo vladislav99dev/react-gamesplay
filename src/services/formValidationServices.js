@@ -1,4 +1,4 @@
-export const validate = (service, data) => {
+const validate = (service, data) => {
   let errorMessages = [];
   if (service === "register") {
     if (data["password"] !== data["confirm-password"]) {
@@ -17,6 +17,28 @@ export const validate = (service, data) => {
 
   return errorMessages;
 };
+
+export const validateCreateAndEdit = (data) => {
+  let errorMessages = [];
+  if(data.title.length < 3){
+    errorMessages.push('Game title should be more than 2 characters.')
+  }
+  if(data.category.length < 3){
+    errorMessages.push('Game category should be more than 2 characters.')
+  }
+  if(data.maxLevel < 10){
+    errorMessages.push('Game max level should be at least 10.')
+  }
+  if(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/.test(data.imageUrl) === false){
+    errorMessages.push('You should enter valid image URL.')
+  }
+  if(data.summary.length < 10){
+    errorMessages.push('Data summary should be more than 10 characters.')
+  }
+  return errorMessages;
+}
+
+
 
 export const validateRegister = validate.bind(null, "register");
 export const validateLogin = validate.bind(null, "login");
