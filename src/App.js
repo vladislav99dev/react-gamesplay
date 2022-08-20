@@ -1,3 +1,4 @@
+import React from "react";
 import { Routes, Route } from "react-router-dom";
 
 import { AuthProvider } from "./context/AuthContext";
@@ -11,12 +12,12 @@ import Create from "./components/GameCompontens/Create";
 import Edit from "./components/GameCompontens/Edit";
 import Details from "./components/GameCompontens/Details";
 import Logout from "./components/Logout";
-import React from "react";
+import Delete from "./components/GameCompontens/Delete";
 
 function App() {
   return (
     <div id="box">
-      <React.StrictMode>
+      {/* <React.StrictMode> */}
       <ValidationProvider>
         <AuthProvider>
           <Header />
@@ -32,14 +33,16 @@ function App() {
               <Route path="/games/">
                 <Route path="catalog" element={<Catalog />} />
                 <Route path="create" element={<Create />} />
-                <Route path="edit" element={<Edit />} />
+                <Route path="edit/:gameId" element={<Edit />} />
                 <Route path="details/:gameId" element={<Details />} />
+                <Route path="delete/:gameId" element={<Delete />} />
+
               </Route>
             </Routes>
           </main>
         </AuthProvider>
       </ValidationProvider>
-      </React.StrictMode>
+      {/* </React.StrictMode> */}
     </div>
   );
 }
