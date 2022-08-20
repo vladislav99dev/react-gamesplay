@@ -14,6 +14,7 @@ import Edit from "./components/GameCompontens/Edit";
 import Details from "./components/GameCompontens/Details";
 import Logout from "./components/Logout";
 import Delete from "./components/GameCompontens/Delete";
+import ErrorPage from "./components/ErrorPage";
 
 function App() {
   return (
@@ -37,8 +38,8 @@ function App() {
                 <Route path="edit/:gameId" element={<Edit />} />
                 <Route path="details/:gameId" element={<Details />} />
                 <Route path="delete/:gameId" element={<Delete />} />
-
               </Route>
+                <Route path="/*" element={<ErrorPage />} />
             </Routes>
           </main>
         </AuthProvider>
