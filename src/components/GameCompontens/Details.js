@@ -6,13 +6,18 @@ import { useAuthContext } from "../../context/AuthContext";
 import * as gameService from "../../services/gameServices";
 
 const Details = () => {
-  const [game, setGame] = useState({});
+  const [game, setGame] = useState();
   const { gameId } = useParams();
 
   const { user } = useAuthContext();
 
   useEffect(() => {
-    gameService.getOne(gameId).then((result) => setGame(result));
+    gameService
+      .getOne(gameId)
+      .then((result) => setGame(result))
+      .catch((err) => {
+        console.error(err);
+      });
   }, []);
 
   const ownerButtons = () => (
@@ -26,12 +31,14 @@ const Details = () => {
     </div>
   );
 
+  console.log(game);
+
   return (
     <section id="game-details">
       <h1>Game Details</h1>
       <div className="info-section">
         <div className="game-header">
-          <img className="game-img" src={game.imageUrl} alt= "game img"/>
+          <img className="game-img" src={game.imageUrl} alt="game img" />
           <h1>{game.title}</h1>
           <span className="levels">MaxLevel: {game.maxLevel}</span>
           <p className="type">{game.category}</p>
@@ -55,10 +62,7 @@ const Details = () => {
           )}
         </div>
         {/*TODO buttons if owner*/}
-        {user._id === game._ownerId 
-        ? ownerButtons()
-        : null
-        }
+        {user._id === game._ownerId ? ownerButtons() : null}
       </div>
 
       <article className="create-comment">
