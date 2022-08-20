@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 
 import { AuthProvider } from "./context/AuthContext";
 import { ValidationProvider } from "./context/ValidationsContext";
+import { GameProvider } from "./context/GameContext";
 
 import Header from "./components/Header";
 import WelcomeWorld from "./components/WelcomeWorld/WelcomeWorld";
@@ -22,6 +23,7 @@ function App() {
       {/* <React.StrictMode> */}
       <ValidationProvider>
         <AuthProvider>
+          <GameProvider>
           <Header />
           <main id="main-content">
             <Routes>
@@ -42,6 +44,7 @@ function App() {
                 <Route path="/*" element={<ErrorPage />} />
             </Routes>
           </main>
+          </GameProvider>
         </AuthProvider>
       </ValidationProvider>
       {/* </React.StrictMode> */}

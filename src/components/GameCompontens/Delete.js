@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 import { useAuthContext } from "../../context/AuthContext";
+import { isOwner } from "../../hoc/gameRoutesGuard";
 
 import * as gameService from "../../services/gameServices";
 
@@ -31,4 +32,4 @@ const Delete = () => {
   return null;
 };
 
-export default Delete;
+export default isOwner(Delete);

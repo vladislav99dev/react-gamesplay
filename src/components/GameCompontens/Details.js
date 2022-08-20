@@ -3,10 +3,13 @@ import { useParams, Link } from "react-router-dom";
 
 import { useAuthContext } from "../../context/AuthContext";
 
+import { useGameContext } from "../../context/GameContext";
+
 import * as gameService from "../../services/gameServices";
 
+
 const Details = () => {
-  const [game, setGame] = useState();
+  const {game, setGame, clearGameState} = useGameContext();
   const { gameId } = useParams();
 
   const { user } = useAuthContext();

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 import { useAuthContext } from "../../context/AuthContext";
@@ -8,10 +8,13 @@ import { validateCreateAndEdit } from "../../services/formValidationServices";
 import * as gameServices from "../../services/gameServices";
 
 import ErrorMessage from "../../partials/ErrorMessage";
+import { useGameContext } from "../../context/GameContext";
+
+import { isOwner } from "../../hoc/gameRoutesGuard";
 
 const Edit = () => {
   const { gameId } = useParams();
-  const [game, setGame] = useState({});
+  const {game, setGame, clearGameState} = useGameContext();
   const { errors, clearErrors, setErrorsArr } = useValidationsContext();
   const { user } = useAuthContext();
   const navigate = useNavigate();
@@ -27,6 +30,7 @@ const Edit = () => {
     })();
     return () => {
       clearErrors();
+      clearGameState();
     };
   }, []);
 
@@ -86,7 +90,7 @@ const Edit = () => {
             defaultValue={game.category}
           />
 
-          <label htmlFor="levels">MaxLevel:{game.maxLevel}</label>
+          <label htmlFor="levels">MaxLevel:</label>
           <input
             type="number"
             id="maxLevel"
@@ -95,7 +99,7 @@ const Edit = () => {
             defaultValue={game.maxLevel}
           />
 
-          <label htmlFor="game-img">Image:{game.imageUrl}</label>
+          <label htmlFor="game-img">Image:</label>
           <input
             type="text"
             id="imageUrl"
@@ -116,4 +120,4 @@ const Edit = () => {
   );
 };
 
-export default Edit;
+export default isOwner(Edit);
