@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 
 import { useAuthContext } from "../../context/AuthContext";
+
 import * as gameService from "../../services/gameServices";
 
 const Details = () => {

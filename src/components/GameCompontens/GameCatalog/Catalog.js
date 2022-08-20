@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
+
 import GameCard from "./GameCard";
+
 import * as gameServices from "../../../services/gameServices";
 
 const Catalog = () => {

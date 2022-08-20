@@ -1,4 +1,5 @@
 import { Link, Outlet } from "react-router-dom";
+
 import { useAuthContext } from "../context/AuthContext";
 
 const Header = () => {

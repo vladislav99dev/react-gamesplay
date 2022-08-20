@@ -3,9 +3,11 @@ import { useParams, useNavigate } from "react-router-dom";
 
 import { useAuthContext } from "../../context/AuthContext";
 import { useValidationsContext } from "../../context/ValidationsContext";
-import ErrorMessage from "../../partials/ErrorMessage";
+
 import { validateCreateAndEdit } from "../../services/formValidationServices";
 import * as gameServices from "../../services/gameServices";
+
+import ErrorMessage from "../../partials/ErrorMessage";
 
 const Edit = () => {
   const { gameId } = useParams();

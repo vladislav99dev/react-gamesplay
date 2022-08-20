@@ -2,10 +2,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 import { IsLoggedIn } from "../hoc/IsLoggedIn";
+
 import * as userServices from "../services/userServices";
-import ErrorMessage from "../partials/ErrorMessage";
+
 import { useAuthContext } from "../context/AuthContext";
 import { useValidationsContext } from "../context/ValidationsContext";
+
+import ErrorMessage from "../partials/ErrorMessage";
 
 const Login = () => {
   const { login } = useAuthContext();

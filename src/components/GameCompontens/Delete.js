@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 import { useAuthContext } from "../../context/AuthContext";
+
 import * as gameService from "../../services/gameServices";
 
 const Delete = () => {
